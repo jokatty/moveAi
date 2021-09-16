@@ -5,19 +5,12 @@ import React, { useState } from 'react';
 
 export default function DisplayItems({ items }) {
   // local state
-  const [length, setLength] = useState(0);
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
   const [resultMessage, setResultMessage] = useState('');
   // global state
   // 8ft (2.43m) wide, 8.5ft (2.59m) high
   // 20ft (6.06m) and 40ft (12.2m).
   let [totalVolume, setTotalVolume] = useState(0);
 
-  function handleAddClick() {
-    const cuboidSide = Math.max(length, width, height);
-    setTotalVolume(totalVolume + (cuboidSide ** 3));
-  }
   // calculate the container size
   function handleCalcClick() {
     let numOfFortyFtContainers = 0;
@@ -48,25 +41,19 @@ export default function DisplayItems({ items }) {
     }
     setResultMessage(message);
     setTotalVolume(0);
-    setLength(0);
-    setWidth(0);
-    setHeight(0);
   }
 
   return (
     <>
-      {items.map((item) => (
-        <>
-          <h3>{item}</h3>
-          <label htmlFor="length">length</label>
-          <input id="length" onChange={(e) => { setLength(e.target.value); }} />
-          <label htmlFor="width">width</label>
-          <input id="width" onChange={(e) => { setWidth(e.target.value); }} />
-          <label htmlFor="height">height</label>
-          <input id="height" onChange={(e) => { setHeight(e.target.value); }} />
-          <button type="button" onClick={handleAddClick}>add</button>
-        </>
-      ))}
+      <h3>Enter the largest dimension in `Feets` against items.</h3>
+      <ol>
+        {items.map((item) => (
+          <li>
+            <span>{item}</span>
+            <input placeholder="largest dimension" onChange={(e) => { setTotalVolume(totalVolume + (e.target.value ** 3)); }} />
+          </li>
+        ))}
+      </ol>
       <button type="button" onClick={handleCalcClick}>Calculate container size</button>
       {resultMessage !== '' && (
       <p>
