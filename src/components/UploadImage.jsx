@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import DisplayItems from './DisplayItems.jsx';
 // make sure that axios always sends the cookies to the backend server
@@ -26,10 +26,6 @@ export default function UploadImage() {
     console.log(postedData.data);
     setItems(postedData.data);
   }
-
-  useEffect(() => {
-    console.log(uploadedImage);
-  }, [uploadedImage]);
 
   return (
     <>

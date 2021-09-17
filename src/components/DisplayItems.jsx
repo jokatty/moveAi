@@ -2,10 +2,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
+import UserAuth from './UserAuth.jsx';
 
 export default function DisplayItems({ items }) {
   // local state
   const [resultMessage, setResultMessage] = useState('');
+  const [costMessge, setCostMessage] = useState('');
   // global state
   // 8ft (2.43m) wide, 8.5ft (2.59m) high
   // 20ft (6.06m) and 40ft (12.2m).
@@ -18,7 +20,6 @@ export default function DisplayItems({ items }) {
     const volOf20FtContainer = 20 * 8 * 8.5;
     const volOf40FtContainer = 40 * 8 * 8.5;
     while (totalVolume > 0) {
-      console.log('while loop runnin');
       if (totalVolume > volOf40FtContainer) {
         numOfFortyFtContainers += 1;
         totalVolume -= volOf40FtContainer;
@@ -32,14 +33,15 @@ export default function DisplayItems({ items }) {
         totalVolume -= volOf20FtContainer;
       }
     }
-    let message = '';
+    let message = 'You need';
     if (numOfFortyFtContainers >= 1) {
-      message += `You need ${numOfFortyFtContainers}, 40ft.`;
+      message += `${numOfFortyFtContainers} container, size 40ft.`;
     }
     if (numOfTwentyFtContainer >= 1) {
-      message += `${numOfTwentyFtContainer}, 20ft containers.`;
+      message += `${numOfTwentyFtContainer} container, size 20ft `;
     }
     setResultMessage(message);
+    setCostMessage('your shipping cost will between USD 2K - 3K ');
     setTotalVolume(0);
   }
 
@@ -56,9 +58,13 @@ export default function DisplayItems({ items }) {
       </ol>
       <button type="button" onClick={handleCalcClick}>Calculate container size</button>
       {resultMessage !== '' && (
-      <p>
-        {resultMessage}
-      </p>
+      <div>
+        <p>
+          {resultMessage}
+        </p>
+        <p>{costMessge}</p>
+        <UserAuth />
+      </div>
       )}
     </>
   );
