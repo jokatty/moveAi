@@ -6,6 +6,7 @@ import UserAuth from './UserAuth.jsx';
 
 export default function DisplayItems({ items }) {
   // local state
+  console.log('display items comp', items);
   const [resultMessage, setResultMessage] = useState('');
   const [costMessge, setCostMessage] = useState('');
   // global state
