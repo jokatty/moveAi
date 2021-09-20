@@ -12,8 +12,8 @@ export default function DisplayImageItems() {
   useEffect(async () => {
     console.log('use effect is running');
     setUploadedImage(store.images);
-    setItems([...items, ...store.items]);
-  }, [store.items]);
+    setItems(store.items);
+  }, [store]);
   console.log(store);
 
   return (
