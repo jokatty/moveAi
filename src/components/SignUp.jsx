@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -6,8 +7,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { createUser } from '../store.js';
+import SessionSavedModal from './SessionSaved.jsx';
 
 export default function LogIn() {
+  // local states for input fields
+  const [userName, setUserName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -17,8 +24,10 @@ export default function LogIn() {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleSignUp = () => {
-    console.log('successfully signed up.');
+  const handleSignUp = async () => {
+    console.log('handle signup is triggred.');
+    const response = await createUser(userName, email, password);
+    console.log('signup response', response);
     setOpen(false);
   };
 
@@ -40,6 +49,7 @@ export default function LogIn() {
             type="text"
             fullWidth
             variant="standard"
+            onChange={(e) => { setUserName(e.target.value); }}
           />
           <TextField
             autoFocus
@@ -48,6 +58,7 @@ export default function LogIn() {
             type="email"
             fullWidth
             variant="standard"
+            onChange={(e) => { setEmail(e.target.value); }}
           />
           <TextField
             autoFocus
@@ -56,6 +67,7 @@ export default function LogIn() {
             type="password"
             fullWidth
             variant="standard"
+            onChange={(e) => { setPassword(e.target.value); }}
           />
         </DialogContent>
         <DialogActions>

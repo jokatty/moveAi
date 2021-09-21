@@ -11,11 +11,12 @@ import axios from 'axios';
 // +++++++++======================
 
 // object that represents all the data contained in the app.
-export const initialState = { items: [], images: [] };
+export const initialState = { items: [], images: [], isUser: 'false' };
 
 // actions that can be performed on the above data
 const GET_ITEMS = 'GET_ITEMS';
 const STORE_UPLOADED_IMAGES_LOCALLY = 'STORE_UPLOADED_IMAGES_LOCALLY';
+const SET_USER = 'SET_USER';
 
 // Reducer function for the actions
 export function imageReducer(state, action) {
@@ -28,6 +29,9 @@ export function imageReducer(state, action) {
     }
     case STORE_UPLOADED_IMAGES_LOCALLY: {
       return { ...state, images: [...state.images, action.payload.image] };
+    }
+    case SET_USER: {
+      return { ...state, isUser: 'true' };
     }
     default:
       return state;
@@ -45,6 +49,11 @@ export function storeImagesAction(image) {
     payload: { image } };
 }
 
+export function setUser(boolVal) {
+  console.log('check if user is running');
+  return { type: SET_USER,
+    payload: boolVal };
+}
 // provider code
 export const ImageContext = createContext(null);
 const { Provider } = ImageContext;
@@ -63,6 +72,27 @@ export async function getDataFromImage(selectedFile) {
   return postedData.data;
 }
 
+export async function createUser(userName, email, password) {
+  console.log('callback for create user is running');
+  const response = await axios.post('http://localhost:3004/signup', { userName, email, password });
+  console.log(response);
+  if (response.status === 200) {
+    document.cookie = 'loggedIn=true';
+    console.log('set the cookies after signup');
+  }
+  return 'signup success';
+}
+
+export async function loginUser(email, password) {
+  console.log('login fun from store');
+  const response = await axios.post('http://localhost:3004/login', { email, password });
+  console.log(response);
+  if (response.status === 200) {
+    document.cookie = 'loggedIn=true';
+    console.log('set the cookies after login');
+  }
+  return 'success';
+}
 // extras=======
 export default function getWeight(totalLength, totalWidth, totalHeight) {
   //  this gives weight in kg

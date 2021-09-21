@@ -6,8 +6,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { loginUser } from '../store.js';
 
 export default function LogIn() {
+  // local state for login
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -17,11 +21,12 @@ export default function LogIn() {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleLogin = () => {
-    console.log('you are loggedin');
+  const handleLogin = async () => {
+    console.log('call back for loggedin');
+    const response = await loginUser(email, password);
+    console.log(response);
     setOpen(false);
   };
-
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
@@ -40,6 +45,7 @@ export default function LogIn() {
             type="email"
             fullWidth
             variant="standard"
+            onChange={(e) => { setEmail(e.target.value); }}
           />
           <TextField
             autoFocus
@@ -48,6 +54,7 @@ export default function LogIn() {
             type="password"
             fullWidth
             variant="standard"
+            onChange={(e) => { setPassword(e.target.value); }}
           />
         </DialogContent>
         <DialogActions>
