@@ -11,12 +11,14 @@ import axios from 'axios';
 // +++++++++======================
 
 // object that represents all the data contained in the app.
-export const initialState = { items: [], images: [], isUser: 'false' };
+export const initialState = { items: [], images: [], isUser: 'false', containers: { twentyFt: 0, fortyFt: 0 }, cost: { minCost: 0, maxCost: 0 } };
 
 // actions that can be performed on the above data
 const GET_ITEMS = 'GET_ITEMS';
 const STORE_UPLOADED_IMAGES_LOCALLY = 'STORE_UPLOADED_IMAGES_LOCALLY';
 const SET_USER = 'SET_USER';
+const SET_CONTAINER = 'SET_CONTAINER';
+const STORE_COST = 'STORE_COST';
 
 // Reducer function for the actions
 export function imageReducer(state, action) {
@@ -32,6 +34,15 @@ export function imageReducer(state, action) {
     }
     case SET_USER: {
       return { ...state, isUser: 'true' };
+    }
+    case SET_CONTAINER: {
+      // change container size update logic in future.
+      return { ...state,
+        containers: { twentyFt: action.payload.twentyFt, fortyFt: action.payload.fortyFt } };
+    }
+    case STORE_COST: {
+      return { ...state,
+        cost: { minCost: action.payload.minCost, maxCost: action.payload.maxCost } };
     }
     default:
       return state;
@@ -53,6 +64,18 @@ export function setUser(boolVal) {
   console.log('check if user is running');
   return { type: SET_USER,
     payload: boolVal };
+}
+
+export function storeContainerSizes(twentyFt, FortyFt) {
+  console.log('store conatiner size is runnint');
+  return { type: SET_CONTAINER,
+    payload: { twentyFt, FortyFt } };
+}
+
+export function storeCost(minCost, maxCost) {
+  console.log('store cost is running');
+  return { type: STORE_COST,
+    payload: { minCost, maxCost } };
 }
 // provider code
 export const ImageContext = createContext(null);

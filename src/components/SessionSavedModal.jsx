@@ -25,6 +25,7 @@ export default function SessionSavedModal() {
 
   const handleClose = () => {
     setOpen(false);
+    history.push('/display-items');
   };
   const handleLogOut = () => {
     document.cookie = 'loggedIn=false';
@@ -60,17 +61,24 @@ export default function SessionSavedModal() {
 
         <h1> Your Session is saved successfully</h1>
         <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-          {store.images.map((image, index) => (
-            <ImageListItem key={index}>
+          {store.images.map((image) => (
+            <ImageListItem>
               <img
-                src={`${image}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`${image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                src={image}
+                // srcSet={image}
                 alt="imgname"
                 loading="lazy"
               />
             </ImageListItem>
           ))}
         </ImageList>
+        <p>
+          cost is:
+          {store.cost.minCost}
+          {' '}
+          and
+          {store.cost.maxCost}
+        </p>
 
       </Dialog>
     </div>

@@ -6,32 +6,37 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useHistory } from 'react-router-dom';
 import { loginUser } from '../store.js';
 
 export default function LogIn() {
   // local state for login
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
+  const history = useHistory();
   const handleClose = () => {
     setOpen(false);
+    history.push('/display-items');
   };
+
   const handleLogin = async () => {
     console.log('call back for loggedin');
     const response = await loginUser(email, password);
     console.log(response);
     setOpen(false);
+    history.push('/saved-session');
   };
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
         Login
-      </Button>
+      </Button> */}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Login</DialogTitle>
         <DialogContent>

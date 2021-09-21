@@ -1,9 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Cookies from 'universal-cookie';
+import { Container } from '@mui/material';
 import DisplayItems from './DisplayItems.jsx';
 import { ImageContext } from '../store.js';
 import UploadImageModal from './UploadImageModal.jsx';
-import UserAuth from './UserAuth.jsx';
+// import UserAuth from './UserAuth.jsx';
+import Image from './Image.jsx';
+import NavBar from './NavBar.jsx';
 
 const cookies = new Cookies();
 
@@ -24,14 +27,17 @@ export default function DisplayImageItems() {
 
   return (
     <>
-      <p>display image items page</p>
-      {console.log('insideloop', store.items)}
-      {uploadedImage.length !== 0 && uploadedImage.map((image) => (
+      <NavBar />
+      <Container>
+        {/* {uploadedImage.length !== 0 && uploadedImage.map((image) => (
         <img src={image} alt="uploadedImage" />
-      ))}
-      {items.length !== 0 && <DisplayItems items={items} />}
-      <UploadImageModal />
-      {items.length !== 0 && <UserAuth />}
+      ))} */}
+        {uploadedImage.length !== 0 && <Image uploadedImage={uploadedImage} />}
+        <UploadImageModal />
+        {items.length !== 0 && <DisplayItems items={items} />}
+
+        {/* {items.length !== 0 && <UserAuth />} */}
+      </Container>
     </>
   );
 }

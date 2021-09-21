@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { getDataFromImage, storeImagesAction, getItemsAction, ImageContext } from '../store.js';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({ '& .MuDialogContent-root': { padding: theme.spacing(2) },
@@ -74,7 +75,7 @@ export default function UploadImageModal() {
   }
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="contained" size="medium" onClick={handleClickOpen} startIcon={<UploadFileIcon />}>
         Upload Image
       </Button>
       <BootstrapDialog
@@ -83,11 +84,28 @@ export default function UploadImageModal() {
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
+          Upload an image
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <input type="file" onChange={readImages} />
-          <button type="button" onClick={handleClick}>upload</button>
+          {/* <input type="file" onChange={readImages} /> */}
+          <Button
+            variant="outlined"
+            component="label"
+            className="upload"
+          >
+            Select File
+            <input
+              type="file"
+              hidden
+              onChange={readImages}
+            />
+          </Button>
+          {/* <button type="button" onClick={handleClick}>upload</button> */}
+
+          <Button variant="contained" size="small" onClick={handleClick} className="upload">
+            Upload
+          </Button>
+
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleSaveChange}>

@@ -8,8 +8,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import FormControl from '@mui/material/FormControl';
-import LogIn from './LogIn.jsx';
-import SignUp from './SignUp.jsx';
+import { useHistory } from 'react-router-dom';
+// import LogIn from './LogIn.jsx';
+// import SignUp from './SignUp.jsx';
 
 export default function UserAuth() {
   const [open, setOpen] = React.useState(false);
@@ -22,6 +23,16 @@ export default function UserAuth() {
     setOpen(false);
   };
 
+  const history = useHistory();
+  const userLoginReq = () => {
+    setOpen(false);
+    history.push('/login');
+  };
+
+  const userSignUpReq = () => {
+    setOpen(false);
+    history.push('/signup');
+  };
   return (
     <>
       <Button variant="outlined" onClick={handleClickOpen}>
@@ -45,8 +56,10 @@ export default function UserAuth() {
               width: 'fit-content' }}
           >
             <FormControl sx={{ mt: 2, minWidth: 120 }}>
-              <LogIn />
-              <SignUp />
+              <button type="button" onClick={userLoginReq}>Login</button>
+              <button type="button" onClick={userSignUpReq}>Signup</button>
+              {/* <LogIn />
+              <SignUp /> */}
             </FormControl>
           </Box>
         </DialogContent>

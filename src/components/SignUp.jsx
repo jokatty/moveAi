@@ -7,35 +7,38 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useHistory } from 'react-router';
 import { createUser } from '../store.js';
-import SessionSavedModal from './SessionSaved.jsx';
+import SessionSavedModal from './SessionSavedModal.jsx';
 
 export default function LogIn() {
   // local states for input fields
   const [userName, setUserName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+  const history = useHistory();
   const handleClose = () => {
     setOpen(false);
+    history.push('/display-items');
   };
   const handleSignUp = async () => {
     console.log('handle signup is triggred.');
     const response = await createUser(userName, email, password);
     console.log('signup response', response);
     setOpen(false);
+    history.push('/saved-session');
   };
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
         Sign up
-      </Button>
+      </Button> */}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Sign up</DialogTitle>
         <DialogContent>

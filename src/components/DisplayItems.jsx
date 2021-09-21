@@ -1,12 +1,18 @@
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable max-len */
 /* eslint-disable prefer-const */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Card, CardContent, Typography, Grid, Button, TextField, Alert, AlertTitle } from '@mui/material';
+import CalculateIcon from '@mui/icons-material/Calculate';
+import UserAuth from './UserAuth.jsx';
+import { ImageContext, storeCost } from '../store.js';
 
 export default function DisplayItems({ items }) {
   // const userLoggedIn = document.cookie;
   // console.log('cookie', userLoggedIn);
-
+  const { dispatch } = useContext(ImageContext);
   // local state
   console.log('display items comp', items);
   const [resultMessage, setResultMessage] = useState('');
@@ -46,31 +52,63 @@ export default function DisplayItems({ items }) {
     setResultMessage(message);
     const costOf20ftCont = 2 * numOfTwentyFtContainer;
     const costOf40ftCont = 3 * numOfFortyFtContainers;
-
+    dispatch(storeCost((Math.min(costOf20ftCont, costOf40ftCont)), (Math.max(costOf20ftCont, costOf40ftCont))));
     setCostMessage(`your shipping cost will between USD ${(Math.min(costOf20ftCont, costOf40ftCont))}K - ${(Math.max(costOf20ftCont, costOf40ftCont))}K `);
     setTotalVolume(0);
   }
 
   return (
     <>
-      <h3>Enter the largest dimension in `Feets` against items.</h3>
-      <ol>
+      <Typography variant="h5" component="div" gutterBottom>
+        Enter the largest dimension in `Feets` against items.
+      </Typography>
+
+      {/* <ol>
         {items.map((item) => (
           <li>
             <span>{item}</span>
             <input placeholder="largest dimension" onChange={(e) => { setTotalVolume(totalVolume + (e.target.value ** 3)); }} />
           </li>
         ))}
-      </ol>
-      <button type="button" onClick={handleCalcClick}>Calculate container size</button>
+      </ol> */}
+      <Card sx={{ mb: 5 }}>
+        <CardContent>
+          {items.map((item) => (
+            <Grid container direction="row" spacing={4}>
+              <Grid item xs={8}>
+                <Typography gutterBottom variant="h6" component="div">
+                  {item}
+                </Typography>
+              </Grid>
+              <Grid item xs={2}>
+                <TextField id="standard-basic" label="Largest dimension" variant="standard" onChange={(e) => { setTotalVolume(totalVolume + (e.target.value ** 3)); }} />
+              </Grid>
+            </Grid>
+          ))}
+        </CardContent>
+      </Card>
+      <Button
+        variant="contained"
+        size="large"
+        startIcon={<CalculateIcon />}
+        onClick={handleCalcClick}
+      >
+        Calculate container size
+      </Button>
       {resultMessage !== '' && (
       <div>
-        <p>
+        {/* <p>
           {resultMessage}
         </p>
-        <p>{costMessge}</p>
+        <p>{costMessge}</p> */}
+        <Alert severity="success">
+          <AlertTitle>{resultMessage}</AlertTitle>
+          {costMessge}
+          <strong>{resultMessage !== '' && <UserAuth />}</strong>
+        </Alert>
       </div>
       )}
+      {/* {resultMessage !== '' && <UserAuth />} */}
     </>
   );
 }
