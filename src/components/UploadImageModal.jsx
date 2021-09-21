@@ -63,9 +63,11 @@ export default function UploadImageModal() {
   async function handleClick() {
     const response = await getDataFromImage(selectedFile);
     console.log('response in modal', response);
-    await dispatch(getItemsAction(response));
-    const localImageUrl = URL.createObjectURL(selectedFile);
-    await dispatch(storeImagesAction(localImageUrl));
+    // await dispatch(getItemsAction(response));
+    await dispatch(getItemsAction(response.items));
+    // const localImageUrl = URL.createObjectURL(selectedFile);
+    // await dispatch(storeImagesAction(localImageUrl));
+    await dispatch(storeImagesAction(response.gcsUri));
   }
   // redirect to the display image and items
   const history = useHistory();

@@ -13,11 +13,22 @@ import Slide from '@mui/material/Slide';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { useHistory } from 'react-router-dom';
+import { Container, Alert } from '@mui/material';
 import { ImageContext } from '../store.js';
+import MessageGrid from './MessageGrid.jsx';
 
 const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
 
 export default function SessionSavedModal() {
+  const [show, setShow] = React.useState(true);
+  React.useEffect(() => {
+    const timeId = setTimeout(() => {
+      setShow(false);
+    }, 6000);
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, []);
   const history = useHistory();
   // get hold of global state
   const { store } = React.useContext(ImageContext);
@@ -59,26 +70,31 @@ export default function SessionSavedModal() {
           </Toolbar>
         </AppBar>
 
-        <h1> Your Session is saved successfully</h1>
-        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-          {store.images.map((image) => (
-            <ImageListItem>
-              <img
-                src={image}
+        <Container>
+          {show ? <Alert severity="success">Your Session is saved successfully!!!</Alert> : null}
+          <ImageList cols={3}>
+            {store.images.map((image) => (
+              <ImageListItem>
+                <img
+                  src={image}
                 // srcSet={image}
-                alt="imgname"
-                loading="lazy"
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
-        <p>
-          cost is:
-          {store.cost.minCost}
-          {' '}
-          and
-          {store.cost.maxCost}
-        </p>
+                  alt="imgname"
+                  loading="lazy"
+                  style={{ width: '500px', height: '350px' }}
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
+          <p>
+            cost is:
+            {store.cost.minCost}
+            {' '}
+            and
+            {store.cost.maxCost}
+          </p>
+          <MessageGrid message={`Min cost: $${store.cost.minCost}`} />
+          <MessageGrid message={`Max cost: $${store.cost.maxCost}`} />
+        </Container>
 
       </Dialog>
     </div>

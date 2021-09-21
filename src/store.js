@@ -92,6 +92,7 @@ export async function getDataFromImage(selectedFile) {
   console.log(formData);
   const postedData = await axios.post('http://localhost:3004/upload', formData);
   console.log(postedData.data);
+  // return postedData.data;
   return postedData.data;
 }
 
