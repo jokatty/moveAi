@@ -36,4 +36,5 @@
     transform: rotate(360deg);
   }
 }
-/*  */
+/* import google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&family=Roboto+Mono&family=Ubuntu+Mono:wght@400;700&display=swap');

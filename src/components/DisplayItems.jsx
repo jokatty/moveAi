@@ -10,16 +10,16 @@ import UserAuth from './UserAuth.jsx';
 import { ImageContext, storeCost } from '../store.js';
 
 export default function DisplayItems({ items }) {
-  // const userLoggedIn = document.cookie;
-  // console.log('cookie', userLoggedIn);
+  // style object
+  const myStyle = { fontFamily: 'Ubuntu Mono',
+    marginTop: '3rem',
+    marginBottom: '2rem' };
+
   const { dispatch } = useContext(ImageContext);
   // local state
   console.log('display items comp', items);
   const [resultMessage, setResultMessage] = useState('');
   const [costMessge, setCostMessage] = useState('');
-  // global state
-  // 8ft (2.43m) wide, 8.5ft (2.59m) high
-  // 20ft (6.06m) and 40ft (12.2m).
   let [totalVolume, setTotalVolume] = useState(0);
 
   // calculate the container size
@@ -59,18 +59,9 @@ export default function DisplayItems({ items }) {
 
   return (
     <>
-      <Typography variant="h5" component="div" gutterBottom>
-        Enter the largest dimension in `Feets` against items.
+      <Typography variant="h5" component="div" gutterBottom style={myStyle}>
+        Enter the largest dimension in feet (ft) against items.
       </Typography>
-
-      {/* <ol>
-        {items.map((item) => (
-          <li>
-            <span>{item}</span>
-            <input placeholder="largest dimension" onChange={(e) => { setTotalVolume(totalVolume + (e.target.value ** 3)); }} />
-          </li>
-        ))}
-      </ol> */}
       <Card sx={{ mb: 5 }}>
         <CardContent>
           {items.map((item) => (
@@ -87,20 +78,18 @@ export default function DisplayItems({ items }) {
           ))}
         </CardContent>
       </Card>
-      <Button
-        variant="contained"
-        size="large"
-        startIcon={<CalculateIcon />}
-        onClick={handleCalcClick}
-      >
-        Calculate container size
-      </Button>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Button
+          variant="contained"
+          size="large"
+          startIcon={<CalculateIcon />}
+          onClick={handleCalcClick}
+        >
+          Calculate container size
+        </Button>
+      </div>
       {resultMessage !== '' && (
       <div>
-        {/* <p>
-          {resultMessage}
-        </p>
-        <p>{costMessge}</p> */}
         <Alert severity="success">
           <AlertTitle>{resultMessage}</AlertTitle>
           {costMessge}
