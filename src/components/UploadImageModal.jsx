@@ -62,7 +62,7 @@ export default function UploadImageModal() {
   }
   async function handleClick() {
     const response = await getDataFromImage(selectedFile);
-    console.log('response in modal', response);
+    console.log('Response in UPLOAD modal:', response);
     // await dispatch(getItemsAction(response));
     await dispatch(getItemsAction(response.items));
     // const localImageUrl = URL.createObjectURL(selectedFile);

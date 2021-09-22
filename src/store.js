@@ -93,6 +93,8 @@ export async function getDataFromImage(selectedFile) {
   console.log(formData);
   // const postedData = await axios.post('http://localhost:3004/upload', formData);
   const postedData = await axios.post(`${REACT_APP_BACKEND_URL}/upload`, formData);
+  console.log(' response data after axios call...................');
+  console.log(postedData);
   console.log(postedData.data);
   // return postedData.data;
   return postedData.data;
