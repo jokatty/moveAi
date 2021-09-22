@@ -9,12 +9,18 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import FormControl from '@mui/material/FormControl';
 import { useHistory } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import SessionSavedModal from './SessionSavedModal.jsx';
+
+const cookies = new Cookies();
 
 // import LogIn from './LogIn.jsx';
 // import SignUp from './SignUp.jsx';
 
 export default function UserAuth() {
   const [open, setOpen] = React.useState(false);
+  const userLoggedIn = cookies.get('loggedIn');
+  console.log(typeof userLoggedIn);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,36 +44,38 @@ export default function UserAuth() {
       <Button variant="outlined" onClick={handleClickOpen}>
         Save My Session
       </Button>
-
-      <Dialog
-        open={open}
-        onClose={handleClose}
-      >
-        <DialogTitle>Optional sizes</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            You can set my maximum width and whether to adapt or not.
-          </DialogContentText>
-          <Box
-            noValidate
-            component="form"
-            sx={{ display: 'flex',
-              flexDirection: 'column',
-              m: 'auto',
-              width: 'fit-content' }}
+      {userLoggedIn === 'false'
+        ? (
+          <Dialog
+            open={open}
+            onClose={handleClose}
           >
-            <FormControl sx={{ mt: 2, minWidth: 120 }}>
-              <button type="button" onClick={userLoginReq}>Login</button>
-              <button type="button" onClick={userSignUpReq}>Signup</button>
-              {/* <LogIn />
+            <DialogTitle>Optional sizes</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                You can set my maximum width and whether to adapt or not.
+              </DialogContentText>
+              <Box
+                noValidate
+                component="form"
+                sx={{ display: 'flex',
+                  flexDirection: 'column',
+                  m: 'auto',
+                  width: 'fit-content' }}
+              >
+                <FormControl sx={{ mt: 2, minWidth: 120 }}>
+                  <button type="button" onClick={userLoginReq}>Login</button>
+                  <button type="button" onClick={userSignUpReq}>Signup</button>
+                  {/* <LogIn />
               <SignUp /> */}
-            </FormControl>
-          </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
-        </DialogActions>
-      </Dialog>
+                </FormControl>
+              </Box>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Close</Button>
+            </DialogActions>
+          </Dialog>
+        ) : <SessionSavedModal />}
     </>
   );
 }
