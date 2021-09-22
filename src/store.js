@@ -6,9 +6,9 @@ import Cookies from 'universal-cookie';
 
 // +++++============HANDLE IT SOON
 // make sure that axios always sends the cookies to the backend server
-// axios.defaults.withCredentials = true;
-// const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3004';
-// console.log(REACT_APP_BACKEND_URL);
+axios.defaults.withCredentials = true;
+const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3004';
+console.log(REACT_APP_BACKEND_URL);
 // +++++++++======================
 
 // object that represents all the data contained in the app.
@@ -91,7 +91,8 @@ export async function getDataFromImage(selectedFile) {
   const formData = new FormData();
   formData.append('image', selectedFile);
   console.log(formData);
-  const postedData = await axios.post('http://localhost:3004/upload', formData);
+  // const postedData = await axios.post('http://localhost:3004/upload', formData);
+  const postedData = await axios.post(`${REACT_APP_BACKEND_URL}/upload`, formData);
   console.log(postedData.data);
   // return postedData.data;
   return postedData.data;
@@ -101,7 +102,8 @@ const cookies = new Cookies();
 
 export async function createUser(userName, email, password) {
   console.log('callback for create user is running');
-  const response = await axios.post('http://localhost:3004/signup', { userName, email, password });
+  // const response = await axios.post('http://localhost:3004/signup', { userName, email, password });
+  const response = await axios.post(`${REACT_APP_BACKEND_URL}/signup`, { userName, email, password });
   console.log(response);
   if (response.status === 200) {
     // document.cookie = 'loggedIn=true';
@@ -113,7 +115,8 @@ export async function createUser(userName, email, password) {
 
 export async function loginUser(email, password) {
   console.log('login fun from store');
-  const response = await axios.post('http://localhost:3004/login', { email, password });
+  // const response = await axios.post('http://localhost:3004/login', { email, password });
+  const response = await axios.post(`${REACT_APP_BACKEND_URL}/login`, { email, password });
   console.log(response);
   if (response.status === 200) {
     // document.cookie = 'loggedIn=true';
