@@ -14,8 +14,11 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { useHistory } from 'react-router-dom';
 import { Container, Alert } from '@mui/material';
+import Cookies from 'universal-cookie';
 import { ImageContext } from '../store.js';
 import MessageGrid from './MessageGrid.jsx';
+
+const cookies = new Cookies();
 
 const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
 
@@ -39,7 +42,8 @@ export default function SessionSavedModal() {
     history.push('/display-items');
   };
   const handleLogOut = () => {
-    document.cookie = 'loggedIn=false';
+    // document.cookie = 'loggedIn=false';
+    cookies.set('loggedIn', 'false', { path: '/' });
     setOpen(false);
     history.push('/');
   };

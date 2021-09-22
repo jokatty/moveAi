@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { createContext, useReducer } from 'react';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 // +++++============HANDLE IT SOON
 // make sure that axios always sends the cookies to the backend server
@@ -96,12 +97,15 @@ export async function getDataFromImage(selectedFile) {
   return postedData.data;
 }
 
+const cookies = new Cookies();
+
 export async function createUser(userName, email, password) {
   console.log('callback for create user is running');
   const response = await axios.post('http://localhost:3004/signup', { userName, email, password });
   console.log(response);
   if (response.status === 200) {
-    document.cookie = 'loggedIn=true';
+    // document.cookie = 'loggedIn=true';
+    cookies.set('loggedIn', 'true', { path: '/' });
     console.log('set the cookies after signup');
   }
   return 'signup success';
@@ -112,7 +116,8 @@ export async function loginUser(email, password) {
   const response = await axios.post('http://localhost:3004/login', { email, password });
   console.log(response);
   if (response.status === 200) {
-    document.cookie = 'loggedIn=true';
+    // document.cookie = 'loggedIn=true';
+    cookies.set('loggedIn', 'true', { path: '/' });
     console.log('set the cookies after login');
   }
   return 'success';

@@ -47,7 +47,7 @@ export default function NavBar() {
             {/* we don't have to declare any value for PUBLIC_URL/ It's a react thing. */}
             {/* <img src={`${process.env.PUBLIC_URL}/rocket-tea-logo.svg`} alt="logo"
             className={classes.logo} /> */}
-            moveAi
+            moveAI
           </Typography>
           {/*
           <IconButton

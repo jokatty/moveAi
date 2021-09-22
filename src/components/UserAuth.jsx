@@ -9,6 +9,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import FormControl from '@mui/material/FormControl';
 import { useHistory } from 'react-router-dom';
+
 // import LogIn from './LogIn.jsx';
 // import SignUp from './SignUp.jsx';
 
@@ -31,13 +32,13 @@ export default function UserAuth() {
 
   const userSignUpReq = () => {
     setOpen(false);
-    history.push('/signup');
-  };
+    history.push('/signup'); };
   return (
     <>
       <Button variant="outlined" onClick={handleClickOpen}>
         Save My Session
       </Button>
+
       <Dialog
         open={open}
         onClose={handleClose}
