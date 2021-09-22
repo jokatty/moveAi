@@ -67,7 +67,9 @@ export default function UploadImageModal() {
     await dispatch(getItemsAction(response.items));
     // const localImageUrl = URL.createObjectURL(selectedFile);
     // await dispatch(storeImagesAction(localImageUrl));
-    await dispatch(storeImagesAction(response.gcsUri));
+    if (response.items.length !== 0) {
+      await dispatch(storeImagesAction(response.gcsUri));
+    }
   }
   // redirect to the display image and items
   const history = useHistory();
