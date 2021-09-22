@@ -96,8 +96,8 @@ export default function SessionSavedModal() {
             and
             {store.cost.maxCost}
           </p>
-          <MessageGrid message={`Min cost: $${store.cost.minCost}`} />
-          <MessageGrid message={`Max cost: $${store.cost.maxCost}`} />
+          <MessageGrid message={`Min cost: $${store.cost.minCost}K`} />
+          <MessageGrid message={`Max cost: $${store.cost.maxCost}K`} />
         </Container>
 
       </Dialog>
