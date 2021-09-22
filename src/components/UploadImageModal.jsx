@@ -90,12 +90,13 @@ export default function UploadImageModal() {
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
           Upload an image
         </BootstrapDialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers sx={{ height: 100, width: 350 }}>
           {/* <input type="file" onChange={readImages} /> */}
           <Button
             variant="outlined"
             component="label"
             className="upload"
+            sx={{ mr: 7, mt: 4, width: 200 }}
           >
             Select File
             <input
@@ -106,7 +107,7 @@ export default function UploadImageModal() {
           </Button>
           {/* <button type="button" onClick={handleClick}>upload</button> */}
 
-          <Button variant="contained" size="small" onClick={handleClick} className="upload">
+          <Button variant="contained" size="small" onClick={handleClick} className="upload" sx={{ mt: 4 }}>
             Upload
           </Button>
 
