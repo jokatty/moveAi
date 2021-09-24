@@ -8,6 +8,7 @@ import { Card, CardContent, Typography, Grid, Button, TextField, Alert, AlertTit
 import CalculateIcon from '@mui/icons-material/Calculate';
 import UserAuth from './UserAuth.jsx';
 import { ImageContext, storeCost } from '../store.js';
+import '../App.css';
 
 export default function DisplayItems({ items }) {
   // style object
@@ -71,8 +72,8 @@ export default function DisplayItems({ items }) {
                   {item}
                 </Typography>
               </Grid>
-              <Grid item xs={2}>
-                <TextField id="standard-basic" label="Largest dimension" variant="standard" onChange={(e) => { setTotalVolume(totalVolume + (e.target.value ** 3)); }} />
+              <Grid item xs={3}>
+                <TextField id="standard-basic" label="largest dimension" variant="standard" onChange={(e) => { setTotalVolume(totalVolume + (e.target.value ** 3)); }} />
               </Grid>
             </Grid>
           ))}
@@ -83,17 +84,18 @@ export default function DisplayItems({ items }) {
           variant="contained"
           size="large"
           startIcon={<CalculateIcon />}
+          style={{ backgroundColor: '#1C1464', fontSize: '1rem', fontWeight: 'bold', height: '70px' }}
           onClick={handleCalcClick}
         >
           Calculate container size
         </Button>
       </div>
       {resultMessage !== '' && (
-      <div>
+      <div className="size-message">
         <Alert severity="success">
           <AlertTitle>{resultMessage}</AlertTitle>
-          {costMessge}
-          <strong>{resultMessage !== '' && <UserAuth />}</strong>
+          <Typography variant="body1" gutterBottom>{costMessge}</Typography>
+          <strong>{resultMessage !== '' && <UserAuth sx={{ mx: 4 }} />}</strong>
         </Alert>
       </div>
       )}

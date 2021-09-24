@@ -1,0 +1,21 @@
+/* body {
+  background-image: url('https://image.freepik.com/free-vector/moving-new-apartment-concept_74855-7628.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  background-color: transparent;
+} */
+
+body {
+  /* background-color: #e4e9fd; */
+  background-color: -webkit-linear-gradient(65deg, #1c1464 50%, #e4e9fd 50%);
+  /* background-image: -webkit-linear-gradient(65deg, #a683e3 50%, #e4e9fd 50%); */
+  background-image: -webkit-linear-gradient(65deg, #1c1464 50%, #e4e9fd 50%);
+  min-height: 100vh;
+  font-family: 'helvetica neue';
+  background-image: url('https://bloggingheros.com/wp-content/uploads/2020/08/relocation-tips.png');
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: bottom;
+}

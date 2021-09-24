@@ -12,10 +12,10 @@ const Item = styled(Paper)(({ theme }) => ({ ...theme.typography.body2,
 
 export default function MessageGrid({ message }) {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} style={{ marginTop: '20px', marginBottom: '20px' }}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Item>{message}</Item>
+          <Item style={{ fontSize: '1rem' }}>{message}</Item>
         </Grid>
       </Grid>
     </Box>

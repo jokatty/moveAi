@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -14,6 +16,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
+import { Alert, CircularProgress } from '@mui/material';
 import { getDataFromImage, storeImagesAction, getItemsAction, ImageContext } from '../store.js';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({ '& .MuDialogContent-root': { padding: theme.spacing(2) },
@@ -44,7 +47,23 @@ const BootstrapDialogTitle = (props) => {
 BootstrapDialogTitle.propTypes = { children: PropTypes.node,
   onClose: PropTypes.func.isRequired };
 
-export default function UploadImageModal() {
+export default function UploadImageModal({ homepage }) {
+  //  show message if vision response comes empty
+  const [show, setShow] = React.useState(false);
+  const [errMsg, setErrMsg] = React.useState(false);
+  const [load, setLoad] = React.useState(false);
+  React.useEffect(() => {
+    if (!errMsg) {
+      setShow(false);
+      return;
+    }
+    setShow(true);
+    const timeId = setTimeout(() => {
+      setShow(false);
+    }, 7000);
+    return () => clearTimeout(timeId);
+  }, [errMsg]);
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -61,6 +80,11 @@ export default function UploadImageModal() {
     setSelectedFile(image);
   }
   async function handleClick() {
+    // show the loading spinner
+    setLoad(true);
+    setTimeout(() => {
+      setLoad(false);
+    }, 5000);
     const response = await getDataFromImage(selectedFile);
     console.log('Response in UPLOAD modal:', response);
     // await dispatch(getItemsAction(response));
@@ -69,6 +93,10 @@ export default function UploadImageModal() {
     // await dispatch(storeImagesAction(localImageUrl));
     if (response.items.length !== 0) {
       await dispatch(storeImagesAction(response.gcsUri));
+    }
+    else {
+      console.log('response came empty');
+      setErrMsg(true);
     }
   }
   // redirect to the display image and items
@@ -79,9 +107,16 @@ export default function UploadImageModal() {
   }
   return (
     <div>
-      <Button variant="contained" size="medium" onClick={handleClickOpen} startIcon={<UploadFileIcon />}>
-        Upload Image
-      </Button>
+      {homepage === 'true'
+        ? (
+          <Button variant="contained" size="medium" style={{ backgroundColor: '#1C1464', height: '75px', width: '380px', fontSize: '1.75rem' }} onClick={handleClickOpen} startIcon={<UploadFileIcon style={{ fontSize: 50 }} />}>
+            Upload Image
+          </Button>
+        ) : (
+          <Button variant="contained" size="medium" style={{ backgroundColor: '#1C1464' }} onClick={handleClickOpen} startIcon={<UploadFileIcon />}>
+            Upload Image
+          </Button>
+        )}
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -112,6 +147,8 @@ export default function UploadImageModal() {
           </Button>
 
         </DialogContent>
+        {show ? <Alert severity="error">Sorry, vision api response is empty. Please try again!</Alert> : null}
+        {load ? <CircularProgress color="success" /> : null}
         <DialogActions>
           <Button autoFocus onClick={handleSaveChange}>
             Save changes

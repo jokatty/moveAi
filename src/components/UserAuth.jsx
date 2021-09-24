@@ -10,12 +10,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import FormControl from '@mui/material/FormControl';
 import { useHistory } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-// import SessionSavedModal from './SessionSavedModal.jsx';
 
 const cookies = new Cookies();
-
-// import LogIn from './LogIn.jsx';
-// import SignUp from './SignUp.jsx';
 
 export default function UserAuth() {
   const [open, setOpen] = React.useState(false);
@@ -41,7 +37,7 @@ export default function UserAuth() {
     history.push('/signup'); };
   return (
     <>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="outlined" style={{ color: '#1C1464', margin: '25px' }} onClick={handleClickOpen}>
         Save My Session
       </Button>
 
@@ -49,29 +45,27 @@ export default function UserAuth() {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Optional sizes</DialogTitle>
+        <DialogTitle>Login / Sign up </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            You can set my maximum width and whether to adapt or not.
+            New user? signup to create an account.
           </DialogContentText>
           <Box
             noValidate
             component="form"
             sx={{ display: 'flex',
-              flexDirection: 'column',
+              flexDirection: 'row',
               m: 'auto',
               width: 'fit-content' }}
           >
             <FormControl sx={{ mt: 2, minWidth: 120 }}>
-              <button type="button" onClick={userLoginReq}>Login</button>
-              <button type="button" onClick={userSignUpReq}>Signup</button>
-              {/* <LogIn />
-              <SignUp /> */}
+              <Button variant="contained" sx={{ mb: 3, width: '150px', backgroundColor: '#1C1464' }} onClick={userLoginReq}>Login</Button>
+              <Button variant="contained" sx={{ backgroundColor: '#1C1464' }} onClick={userSignUpReq}>Sign up</Button>
             </FormControl>
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
+          <Button onClick={handleClose} sm={{ color: '#1C1464' }}>Close</Button>
         </DialogActions>
       </Dialog>
     </>

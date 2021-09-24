@@ -15,8 +15,8 @@ import ImageListItem from '@mui/material/ImageListItem';
 import { useHistory } from 'react-router-dom';
 import { Container, Alert } from '@mui/material';
 import Cookies from 'universal-cookie';
-import { ImageContext } from '../store.js';
 import MessageGrid from './MessageGrid.jsx';
+import { ImageContext } from '../store.js';
 
 const cookies = new Cookies();
 
@@ -55,7 +55,7 @@ export default function SessionSavedModal() {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: 'relative' }}>
+        <AppBar sx={{ position: 'relative', backgroundColor: '#0A0632' }}>
           <Toolbar>
             <IconButton
               edge="start"
@@ -66,7 +66,7 @@ export default function SessionSavedModal() {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Sound
+              CURRENT SESSION
             </Typography>
             <Button autoFocus color="inherit" onClick={handleLogOut}>
               Log out
@@ -74,7 +74,7 @@ export default function SessionSavedModal() {
           </Toolbar>
         </AppBar>
 
-        <Container>
+        <Container style={{ marginTop: '70px', marginBottom: '70px' }}>
           {show ? <Alert severity="success">Your Session is saved successfully!!!</Alert> : null}
           <ImageList cols={3}>
             {store.images.map((image) => (
@@ -89,13 +89,6 @@ export default function SessionSavedModal() {
               </ImageListItem>
             ))}
           </ImageList>
-          <p>
-            cost is:
-            {store.cost.minCost}
-            {' '}
-            and
-            {store.cost.maxCost}
-          </p>
           <MessageGrid message={`Min cost: $${store.cost.minCost}K`} />
           <MessageGrid message={`Max cost: $${store.cost.maxCost}K`} />
         </Container>
@@ -104,7 +97,3 @@ export default function SessionSavedModal() {
     </div>
   );
 }
-// const itemData = [
-//   { img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e' },
-//   { img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d' },
-// ];

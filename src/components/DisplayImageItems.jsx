@@ -11,6 +11,10 @@ import NavBar from './NavBar.jsx';
 const cookies = new Cookies();
 
 export default function DisplayImageItems() {
+  const alignStyle = { display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center' };
+
   const userLoggedIn = cookies.get('loggedIn');
   console.log('cookie', userLoggedIn);
   const { store } = useContext(ImageContext);
@@ -28,15 +32,12 @@ export default function DisplayImageItems() {
   return (
     <>
       <NavBar />
-      <Container>
-        {/* {uploadedImage.length !== 0 && uploadedImage.map((image) => (
-        <img src={image} alt="uploadedImage" />
-      ))} */}
+      <Container style={{ marginTop: '70px', marginBottom: '70px' }}>
         {uploadedImage.length !== 0 && <Image uploadedImage={uploadedImage} />}
-        <UploadImageModal />
+        <div style={{ alignStyle }}>
+          <UploadImageModal />
+        </div>
         {items.length !== 0 && <DisplayItems items={items} />}
-
-        {/* {items.length !== 0 && <UserAuth />} */}
       </Container>
     </>
   );

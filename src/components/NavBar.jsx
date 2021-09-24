@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 // import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 // import MenuIcon from '@material-ui/icons/Menu';
 // import ListAltIcon from '@material-ui/icons/ListAlt';
 // import { useHistory } from 'react-router-dom';
@@ -47,7 +48,8 @@ export default function NavBar() {
             {/* we don't have to declare any value for PUBLIC_URL/ It's a react thing. */}
             {/* <img src={`${process.env.PUBLIC_URL}/rocket-tea-logo.svg`} alt="logo"
             className={classes.logo} /> */}
-            moveAI
+            <Link to="/" style={{ textDecoration: 'none', color: 'white', fontFamily: 'PT Sans', fontSize: '2.5rem', fontWeight: '700', paddingLeft: '4rem' }}> moveAI</Link>
+
           </Typography>
           {/*
           <IconButton
