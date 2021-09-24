@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({ containerStyle: { margin: 'auto',
   alignItems: 'center',
   justifyContent: 'center',
   marginTop: '8vh' },
-uploadBtn: { alignItems: 'center', textAlign: 'center', marginTop: '1vh' } }));
+uploadBtn: { alignItems: 'center', textAlign: 'center', marginTop: '2vh' } }));
 
 export default function HomeScreen() {
   const classes = useStyles();
