@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({ containerStyle: { margin: 'auto',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  marginTop: '15vh' },
-uploadBtn: { alignItems: 'center', textAlign: 'center', marginTop: '3vh' } }));
+  marginTop: '8vh' },
+uploadBtn: { alignItems: 'center', textAlign: 'center', marginTop: '1vh' } }));
 
 export default function HomeScreen() {
   const classes = useStyles();
@@ -20,7 +20,7 @@ export default function HomeScreen() {
     <>
       <NavBar />
       <Container className={classes.containerStyle}>
-        <Typography variant="h3" style={{ fontFamily: 'Roboto Mono', textAlign: 'center', lineHeight: 1.6 }}>Know the cost of  your relocation.</Typography>
+        <Typography variant="h3" style={{ fontFamily: 'Roboto Mono', color: '#476072', textAlign: 'center', lineHeight: 1.2 }}>Know the cost of  your relocation.</Typography>
         <div className={classes.uploadBtn}>
           <UploadImageModal homepage="true" />
         </div>

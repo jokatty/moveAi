@@ -109,7 +109,7 @@ export default function UploadImageModal({ homepage }) {
     <div>
       {homepage === 'true'
         ? (
-          <Button variant="contained" size="medium" style={{ backgroundColor: '#1C1464', height: '75px', width: '380px', fontSize: '1.75rem' }} onClick={handleClickOpen} startIcon={<UploadFileIcon style={{ fontSize: 50 }} />}>
+          <Button variant="contained" size="medium" style={{ backgroundColor: '#1C1464', height: '65px', width: '380px', fontSize: '1.5rem' }} onClick={handleClickOpen} startIcon={<UploadFileIcon style={{ fontSize: 50 }} />}>
             Upload Image
           </Button>
         ) : (
