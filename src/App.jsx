@@ -22,9 +22,6 @@ function App() {
         </ImageProvider>
       </Switch>
     </Router>
-    // <ImageProvider>
-    //   <DisplayImageItems />
-    // </ImageProvider>
   );
 }
 
