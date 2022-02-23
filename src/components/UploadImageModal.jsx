@@ -151,7 +151,7 @@ export default function UploadImageModal({ homepage }) {
         {load ? <CircularProgress color="success" /> : null}
         <DialogActions>
           <Button autoFocus onClick={handleSaveChange}>
-            Save changes
+            View image content
           </Button>
         </DialogActions>
       </BootstrapDialog>
