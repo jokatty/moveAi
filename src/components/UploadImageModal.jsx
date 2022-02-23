@@ -149,6 +149,7 @@ export default function UploadImageModal({ homepage }) {
         </DialogContent>
         {show ? <Alert severity="error">Sorry, vision api response is empty. Please try again!</Alert> : null}
         {load ? <CircularProgress color="success" /> : null}
+        {load ? <p>sending request...</p> : null}
         <DialogActions>
           <Button autoFocus onClick={handleSaveChange}>
             View image content
