@@ -29,9 +29,6 @@ export default function NavBar() {
       <AppBar position="static" className={classes.appBar} elevation={0}>
         <Toolbar className={classes.toolbar}>
           <Typography className={classes.title} variant="h5" noWrap>
-            {/* we don't have to declare any value for PUBLIC_URL/ It's a react thing. */}
-            {/* <img src={`${process.env.PUBLIC_URL}/rocket-tea-logo.svg`} alt="logo"
-            className={classes.logo} /> */}
             <Link to="/" style={{ textDecoration: 'none', color: 'white', fontFamily: 'PT Sans', fontSize: '2.5rem', fontWeight: '700', paddingLeft: '4rem' }}> moveAI</Link>
           </Typography>
         </Toolbar>
