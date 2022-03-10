@@ -18,27 +18,20 @@ export default function LogIn() {
   const [password, setPassword] = React.useState('');
   const [open, setOpen] = React.useState(true);
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
   const history = useHistory();
   const handleClose = () => {
     setOpen(false);
     history.push('/display-items');
   };
+
   const handleSignUp = async () => {
-    console.log('handle signup is triggred.');
     const response = await createUser(userName, email, password);
-    console.log('signup response', response);
     setOpen(false);
     history.push('/saved-session');
   };
 
   return (
     <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Sign up
-      </Button> */}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Sign up</DialogTitle>
         <DialogContent>
