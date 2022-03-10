@@ -1,6 +1,5 @@
 /* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/require-default-props */
 
 import * as React from 'react';
