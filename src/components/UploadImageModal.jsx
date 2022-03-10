@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/require-default-props */
-/* eslint-disable react/jsx-props-no-spreading */
+
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
