@@ -18,7 +18,6 @@ export default function DisplayItems({ items }) {
 
   const { dispatch } = useContext(ImageContext);
   // local state
-  console.log('display items comp', items);
   const [resultMessage, setResultMessage] = useState('');
   const [costMessge, setCostMessage] = useState('');
   let [totalVolume, setTotalVolume] = useState(0);
@@ -99,7 +98,6 @@ export default function DisplayItems({ items }) {
         </Alert>
       </div>
       )}
-      {/* {resultMessage !== '' && <UserAuth />} */}
     </>
   );
 }
