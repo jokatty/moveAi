@@ -16,7 +16,11 @@ rules: { 'brace-style': 'off',
   'import/no-extraneous-dependencies': 'off',
   'linebreak-style': 'off',
   'no-param-reassign': ['error', { props: false }],
-  'react/prop-types': 'warn',
+  // 'react/prop-types': 'warn',
   'no-shadow': 'warn',
   'arrow-parens': 'warn',
+  // newly added props
+  'react/prop-types': 0,
+  'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+  // up till here
   'object-curly-newline': ['error', { multiline: false }] } };
