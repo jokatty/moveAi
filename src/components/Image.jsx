@@ -1,7 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable react/prop-types */
 import React from 'react';
-
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 
