@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-filename-extension */
 import React, { createContext, useReducer } from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
