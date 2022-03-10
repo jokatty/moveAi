@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/require-default-props */
 
