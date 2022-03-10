@@ -22,5 +22,6 @@ rules: { 'brace-style': 'off',
   // newly added props
   'react/prop-types': 0,
   'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+  'react/jsx-props-no-spreading': 'off',
   // up till here
   'object-curly-newline': ['error', { multiline: false }] } };
