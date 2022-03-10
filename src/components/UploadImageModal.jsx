@@ -47,6 +47,7 @@ export default function UploadImageModal({ homepage }) {
   const [show, setShow] = React.useState(false);
   const [errMsg, setErrMsg] = React.useState(false);
   const [load, setLoad] = React.useState(false);
+
   React.useEffect(() => {
     if (!errMsg) {
       setShow(false);
@@ -67,6 +68,7 @@ export default function UploadImageModal({ homepage }) {
   const handleClose = () => {
     setOpen(false);
   };
+
   // upload image logic
   const [selectedFile, setSelectedFile] = useState('');
   const { dispatch } = useContext(ImageContext);
@@ -74,12 +76,15 @@ export default function UploadImageModal({ homepage }) {
     const image = e.target.files[0];
     setSelectedFile(image);
   }
+
+  // callback function when upload button is clicked
   async function handleClick() {
     // show the loading spinner
     setLoad(true);
     setTimeout(() => {
       setLoad(false);
     }, 5000);
+
     const response = await getDataFromImage(selectedFile);
     await dispatch(getItemsAction(response.items));
     if (response.items.length !== 0) {
@@ -89,12 +94,14 @@ export default function UploadImageModal({ homepage }) {
       setErrMsg(true);
     }
   }
+
   // redirect to the display image and items
   const history = useHistory();
   function handleSaveChange() {
     history.push('/display-items');
     handleClose();
   }
+
   return (
     <div>
       {homepage === 'true'
