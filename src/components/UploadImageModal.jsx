@@ -86,16 +86,11 @@ export default function UploadImageModal({ homepage }) {
       setLoad(false);
     }, 5000);
     const response = await getDataFromImage(selectedFile);
-    console.log('Response in UPLOAD modal:', response);
-    // await dispatch(getItemsAction(response));
     await dispatch(getItemsAction(response.items));
-    // const localImageUrl = URL.createObjectURL(selectedFile);
-    // await dispatch(storeImagesAction(localImageUrl));
     if (response.items.length !== 0) {
       await dispatch(storeImagesAction(response.gcsUri));
     }
     else {
-      console.log('response came empty');
       setErrMsg(true);
     }
   }
@@ -126,7 +121,6 @@ export default function UploadImageModal({ homepage }) {
           Upload an image
         </BootstrapDialogTitle>
         <DialogContent dividers sx={{ height: 100, width: 350 }}>
-          {/* <input type="file" onChange={readImages} /> */}
           <Button
             variant="outlined"
             component="label"
@@ -140,7 +134,6 @@ export default function UploadImageModal({ homepage }) {
               onChange={readImages}
             />
           </Button>
-          {/* <button type="button" onClick={handleClick}>upload</button> */}
 
           <Button variant="contained" size="small" onClick={handleClick} className="upload" sx={{ mt: 4 }}>
             Upload
