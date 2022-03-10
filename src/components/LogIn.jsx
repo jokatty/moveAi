@@ -15,10 +15,6 @@ export default function LogIn() {
   const [password, setPassword] = React.useState('');
   const [open, setOpen] = React.useState(true);
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
   const history = useHistory();
   const handleClose = () => {
     setOpen(false);
@@ -26,7 +22,6 @@ export default function LogIn() {
   };
 
   const handleLogin = async () => {
-    console.log('call back for loggedin');
     const response = await loginUser(email, password);
     console.log(response);
     setOpen(false);
@@ -34,9 +29,6 @@ export default function LogIn() {
   };
   return (
     <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Login
-      </Button> */}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Login</DialogTitle>
         <DialogContent>
